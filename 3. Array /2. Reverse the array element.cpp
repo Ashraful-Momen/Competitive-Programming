@@ -16,31 +16,25 @@ int main()
     cin >> n;
 
     // Step 2: Input elements
-    cout << "Enter " << n << " elements (ASCII values if you want to see characters): ";
+    cout << "Enter " << n << " numbers: ";
     for (int i = 0; i < n; i++)
     {
         cin >> a[i];
     }
 
-    // Step 3: Reverse the array
+    // Step 3: Reverse the array using swapping logic
     for (int i = 0; i < n / 2; i++)
     {
-        // Swap a[i] and a[n - 1 - i]
         int temp = a[i];
         a[i] = a[n - 1 - i];
         a[n - 1 - i] = temp;
     }
 
-    // Step 4: Print reversed array
-    cout << "Reversed array (as numbers): ";
+    // Step 4: Print the reversed array
+    cout << "Reversed array: ";
     for (int i = 0; i < n; i++)
     {
         cout << a[i] << " ";
-    }
-    cout << "\nAs characters: ";
-    for (int i = 0; i < n; i++)
-    {
-        cout << char(a[i]) << " ";
     }
     cout << endl;
 
