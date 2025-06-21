@@ -3,7 +3,7 @@ using namespace std;
 
 // reverse the array : ______________________________________________________
 // we have to swap the first element with the last element, second with second-last, and so on.
-// we can do this using a loop: run from i = 0 to i < n / 2
+// we can do this using a loop: run from i = 0 to i < n / 2 , [cause run the loop half size of the array] 
 // swap a[i] with a[n - 1 - i] using a temporary variable
 // after loop ends, the array will be reversed
 
