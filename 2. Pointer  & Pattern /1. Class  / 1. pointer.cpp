@@ -42,6 +42,9 @@ int main() {
     printf("Returned by call_reference: %d\n", call_reference(&x));
 
 
+    // class use this->variable . "$this" access inside class and method also a pointer . 
+
+
     // explain with constent of pointer , constant pointer can't change the variable value , cause the the variable is pointer. 
     // a constant variable pointer point  to the constant variable. 
     // a constant pointer only point 1 variable . 
