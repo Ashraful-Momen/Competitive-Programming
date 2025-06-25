@@ -97,9 +97,7 @@ Here’s a **complete list of topics** to **master arrays in C++**, organized in
 
 ---
 
-## ✅ Bonus: Array Practice Sets
 
-Want categorized problems for each of these topics too?
 
 ---
 
