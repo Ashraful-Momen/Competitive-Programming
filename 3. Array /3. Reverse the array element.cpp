@@ -1,3 +1,5 @@
+// #reverse : swap(a[i], a[n-i-1]) ,  two pointer (i= 0, j=n-1, i<j, i++, j--)
+
 #include <iostream>
 using namespace std;
 
