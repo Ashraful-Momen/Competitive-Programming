@@ -97,8 +97,8 @@ int main(){
 
 ============================== pass dynamic objet to a function ======================
 
-#use a dynamic obj ; pass obj to any function : 
-# pass array or pass pointer is the same thing . 
+# use a dynamic obj ; pass obj to any function : 
+# pass array or pass pointer in the function is the same thing . 
 
 class Studen{
 
