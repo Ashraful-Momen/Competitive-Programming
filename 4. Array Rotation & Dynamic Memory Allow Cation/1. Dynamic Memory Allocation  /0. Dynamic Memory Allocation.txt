@@ -1,0 +1,133 @@
+Stack: Local variables, function parameters (automatic cleanup)
+Heap: Dynamic allocation with new/delete (manual management)
+Static: Global variables, static variables
+
+#------------------------------------
+# dynamic memory allocation: 
+
+//create a array [5] into heap memory , which return a address of memory (1st index of the array )
+// here *a store the dynamic array of 1st element address 
+// *a is a pointer and also a array . 
+
+int *a = new int [5] ; 
+
+//delete 1st element of the array : 
+
+delete a ; 
+
+delete a[0]; 
+
+// delete the full array ; 
+
+delete[] a; 
+
+#example of the code : 
+-----------------------
+int n; 
+cin >> n; 
+
+int *a = new int [n]
+
+for (int i = 0; i<n ; i++) cin>>a[i]
+
+for (int i = 0 ; i<n; i++) count <<  a[i] <<" " <<endl;
+
+delete[] a; 
+
+
+#increase the array size with dynamic memory: 
+---------------------------------------------
+
+int n; 
+cin >> n; 
+
+int *a = new int [n]; 
+
+
+
+
+for (int i = 0; i<n ; i++) 
+{
+    cin>>a[i]
+}
+
+
+//***main part : 
+
+int *b = new int [n*3] // 3 times bigger then 'a' size of array; 
+
+for (int i = 0 ; i<n; i++){
+
+    b[i]= a[i]
+}
+
+delete[] a; 
+
+for (int i = 0 ; i<sideOf(b); i++) count <<  a[i] <<" " <<endl;
+
+
+========================= Class object  ========================
+
+class Studen{
+
+    int roll; 
+    Student (int roll){
+        this->roll = roll; 
+    }
+
+}
+
+int main(){
+
+    Student obj = Student(10);
+    cout<< "roll: " << obj.roll; 
+
+    // dynamic object create (which also a pointer) : 
+
+    Student *obj = new Student(10); // this object create in a heap memory . 
+
+    cout<< "roll: " << obj->roll << endl; 
+
+    return 0; 
+} 
+
+# the size of class object is : total variables size + object pointer size (4 or 8 bits): 
+
+
+
+============================== pass dynamic objet to a function ======================
+
+#use a dynamic obj ; pass obj to any function : 
+# pass array or pass pointer is the same thing . 
+
+class Studen{
+
+    int roll; 
+    Student (int roll){
+        this->roll = roll; 
+    }
+
+    void print(){
+        cout << this->roll; 
+    }
+
+}
+
+
+void fun(Student *obj)
+{
+    obj->roll = 100; 
+}
+
+int main(){
+
+   
+
+    Student *obj = new Student(10); // this object create in a heap memory . 
+
+    fun (obj); 
+
+    obj->print(); 
+
+    return 0; 
+} 
