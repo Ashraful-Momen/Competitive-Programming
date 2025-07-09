@@ -1,0 +1,281 @@
+#dynamically array size declare:
+---------------------------------
+array [] = {1,2,3,}
+
+
+#dynamically 2d array size declare:
+------------------------------------
+**in 2d array col size must be declare:
+
+array [] [col] = {{1,2,}{3,4,}}
+
+
+#access a specific row from 2d array :
+--------------------------------------
+array [][j=2]
+1 2 3
+4 5 6  <-- access this row value, row value fix and column value will be change .
+7 8 9
+
+
+fix_i = 1,
+for (j=0;j<sizeOf(array[column]); j++){
+    cout << array[fix_i][j] <<endl;
+}
+
+#access a specific col from 2d array :
+--------------------------------------
+array [][j=2] =
+
+ # access 2nd col value, column value fix and row value will be change .
+1 2 3
+4 5 6
+7 8 9
+
+
+fix_j = 1,
+for (i=0;j<sizeOf(array[column]); i++){
+    cout << array[i][fix_j] <<endl;
+}
+
+
+# squar matrix => Diagonal : row = col . => array [1][1]
+-----------------------------------------
+array =
+1 2
+3 4
+
+***primary Diagonal is => 1,4.
+***secondary Diagonal is => 2,3.
+
+**** here Diagonal will be in the loop,  i==j
+
+
+**sum of the Primary Diagonal.
+
+int sum = 0;
+for (i= 0; i<row; i++){
+
+    for(j= 0; j<col; j++){
+
+        //Primary Diagonal condition:
+
+        if (i==j){
+            sum = sum + arr[i][j]
+        }
+    }
+}
+
+
+***secondary Diagonal formula : i+j == n-1 ; where n is the size of array .
+
+int sum = 0;
+for (i= 0; i<row; i++){
+
+    for(j= 0; j<col; j++){
+
+        //secondary Diagonal condition:
+
+        if (i+j==n-1){
+            sum = sum + arr[i][j]
+        }
+    }
+}
+
+
+#Matrix Sum : size should be same for matrix A and matrix B.
+-------------------------------------------------------------
+A =
+
+1 2
+3 4
+
+B =
+
+4 6
+7 8
+
+#formula : C[i][j] = A[i][j] + B[i][j]
+----------
+
+#Algorithm for matirx sum :
+----------------------------
+input A,B matirx.
+
+run a loop for sum:
+
+for (i=0;i<row;i++){
+
+    for (j=0;j<col;j++){
+
+        //sum of the matrix :
+        C[i][j] = A[i][j] + B[i][j]
+    }
+}
+
+
+
+#Matrix Multiplication : (A-> col size == B --> row size ) =>  A [m][n] = B [n][p]
+-------------------------
+
+#formula for Multiplication:
+-------------------------------
+C [m][p] =>  A [m][n] X B [n][p]
+
+1. outer loop depends => [m]
+2. inner loop depends => [p]
+3. 2nd inner loop depends => [n]
+
+
+4. (take 1st row vaule,  A[i][]) X (take 1 column value, B[][n]) => sum = A[i][] x B[][j]
+
+
+
+//Matrix C=>
+
+for(i=0;i<m;i++)
+{
+    for(j=0;j<p;j++)
+    {
+        // for Multiplication use extra one loop , 'k' . and 'k' loop depend on common of A,B matirx which is 'n'.
+        for(k=0;i<n;k++)
+        {
+
+        //condition :
+             C[i][j] += A[i][k] * B[k][j]
+        }
+    }
+}
+
+
+
+========================================= Have to solve those problem ===========================================
+# Element search in 2d array .
+# Findout the difference between primary and secondary Diagonal sum.
+# Findout the Spiral from 2d array .
+# Findout nighbour note from 2d array. (condition: i,j > 0, i<row, j<col)
+--------------------------------------------------------------------------------
+#formula for finding the neighbour notes index's.
+
+i-1,j-1    i-1,j    i-1,j+1
+
+i,j-1       i,j      i,j+1
+
+i+1,j-1    i+1,j    i+1,j+1
+--------------------------------------------------------------------------------
+# Print 2d array of Mirror by column .
+
+# Print the 2d array of Mirror (reverse each of row of matrix.) , formula => swap(a[i][x],a[i][y]) , where => x,y use for tow pointer .
+--------------------------------------------------------------------------------
+=> solve :
+
+    int a[n][m];
+
+    for (int i = 0; i<n;i++)
+    {
+        int x = 0, y = m-1;
+
+        while(x<y){
+            swap(a[i][x],a[i][y])
+            x++;
+            y--;
+        }
+    }
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+\============================================================
+MATRIX MULTIPLICATION IN C++
+============================
+
+# \u25ba MATRIX MULTIPLICATION
+
+> Matrix Multiplication is performed between two matrices A and B
+> under the condition:
+
+```
+            A's COLUMN SIZE == B's ROW SIZE
+```
+
+If:
+
+```
+A [m][n]     and     B [n][p]
+```
+
+Then the resultant matrix C will be:
+
+```
+C [m][p]  =>  Product of A [m][n] and B [n][p]
+```
+
+---
+
+# \u25ba FORMULA FOR MATRIX MULTIPLICATION:
+
+> C\[i]\[j] = Sum of (A\[i]\[k] \* B\[k]\[j])  for k = 0 to n-1
+
+This means:
+
+1. Take the **i-th row** of matrix A.
+2. Take the **j-th column** of matrix B.
+3. Multiply each corresponding element and sum the result.
+
+---
+
+# \u25ba LOOP STRUCTURE (ASCII FLOW EXPLANATION):
+
+```cpp
+for (i = 0; i < m; i++)         // Outer Loop --> Rows of A (and C)
+{
+    for (j = 0; j < p; j++)     // Inner Loop --> Columns of B (and C)
+    {
+        C[i][j] = 0;           // Initialize each C[i][j] element
+        for (k = 0; k < n; k++)// Extra Loop --> Common Dimension (n)
+        {
+            C[i][j] += A[i][k] * B[k][j];
+        }
+    }
+}
+```
+
+---
+
+# \u25ba DETAILED ALGORITHM EXPLANATION:
+
+1. The outermost loop (i) iterates through **each row of matrix A**.
+2. The second loop (j) iterates through **each column of matrix B**.
+3. The innermost loop (k) is responsible for multiplying each element
+   of the row of A with the corresponding element of the column of B.
+4. The product results are summed and stored in C\[i]\[j].
+
+---
+
+# \u25ba ILLUSTRATION (ASCII Diagram):
+
+```
+ A (m x n)          B (n x p)             Result C (m x p)
+```
+
++----------------+  x  +----------------+  =  +----------------+
+\| a11 a12 ... a1n|     | b11 b12 ... b1p|     | c11 c12 ... c1p|
+\| a21 a22 ... a2n|     | b21 b22 ... b2p|     | c21 c22 ... c2p|
+\| ...            |     | ...            |     | ...            |
+\| am1 am2 ... amn|     | bn1 bn2 ... bnp|     | cm1 cm2 ... cmp|
+
+---
+
+# \u25ba KEY POINTS:
+
+* Time Complexity: O(m \* n \* p)
+* Matrix multiplication is not commutative: A x B != B x A
+* Ensure dimension compatibility: A's columns == B's rows
+
+\============================================================
+END OF MATRIX MULTIPLICATION NOTE
+=================================
+
