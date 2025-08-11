@@ -1,0 +1,148 @@
+﻿Priority Queue in C++
+1. What is a Priority Queue?
+* A priority queue is a special type of queue where each element has a priority.
+* After push element in the array the output alwasy => Desecnding order by default.
+* In C++, it is implemented using a heap internally.
+* By default, it’s a max-heap (largest element has the highest priority).
+2. Basic Functions
+a) push(element)
+* Inserts an element into the priority queue.
+* Complexity: O(log n)
+
+
+priority_queue<int> pq;
+pq.push(10);
+pq.push(5);
+pq.push(20);
+
+
+b) pop()
+* Removes the element with the highest priority (top element).
+* Complexity: O(log n)
+
+
+pq.pop(); // removes 20
+
+
+c) top()
+* Returns the element with the highest priority (does not remove it).
+* Complexity: O(1)
+
+
+cout << pq.top(); / outputs 10
+
+
+d) size()
+* Returns the number of elements in the queue.
+* Complexity: O(1)
+
+
+cout << pq.size(); // outputs 2
+
+
+3. Converting to Min Heap
+By default, priority_queue<int> is a max-heap.
+To create a min-heap:
+
+
+priority_queue<int, vector<int>, greater<int>> minHeap;
+
+
+   * Here, greater<int> changes the comparison so smallest element has the highest priority.
+Example:
+cpp
+CopyEdit
+minHeap.push(10);
+minHeap.push(5);
+minHeap.push(20);
+
+
+cout << minHeap.top(); // Output: 5
+
+
+      4. Complexity Summary
+Operation | Time Complexity
+-----------------|-----------------
+push() | O(log n)
+pop() | O(log n)
+top() | O(1)
+size() | O(1)
+
+
+Practice problem shown in class : 
+        1. https://leetcode.com/problems/last-stone-weight/description/
+Solution : 
+class Solution {
+public:
+    int lastStoneWeight(vector<int>& stones) {
+        priority_queue < int > pq;
+        for (int x : stones) {
+            pq.push(x);
+        }
+        while (pq.size() > 1) {
+            int s1 = pq.top();
+            pq.pop();
+            int s2 = pq.top();
+            pq.pop();
+            if (s1 > s2) pq.push(s1 - s2);
+        }
+        if (pq.size() == 0) return 0;
+        else return pq.top();
+    }
+};
+
+
+2. https://leetcode.com/problems/third-maximum-number/description/
+Solution : 
+class Solution {
+public:
+    int thirdMax(vector<int>& nums) {
+        priority_queue < int > pq;
+        for (int x : nums) {
+            pq.push(x);
+        }
+        int first_max = pq.top();
+        while (pq.size() > 0 && pq.top() == first_max) {
+            pq.pop();
+        }
+        if (pq.size() > 0) {
+            int sMax = pq.top();
+            while (pq.size() > 0 && pq.top() == sMax) pq.pop();
+        }
+        if (pq.size() > 0) {
+            return pq.top();
+        }
+        else return first_max;
+    }
+};
+3. https://leetcode.com/problems/relative-ranks/
+Solution :
+class Solution {
+public:
+    vector<string> findRelativeRanks(vector<int>& score) {
+        int n = score.size();
+        vector < string > ans(n);
+        priority_queue < pair < int, int > > pq;
+        for (int i = 0; i < n; i++) {
+            pq.push(make_pair(score[i], i));
+        }
+        ans[pq.top().second] = "Gold Medal";
+        pq.pop();
+        if (pq.size()) {
+            ans[pq.top().second] = "Silver Medal";
+            pq.pop();
+        }
+        if (pq.size()) {
+            ans[pq.top().second] = "Bronze Medal";
+            pq.pop();
+        }
+        int rank = 4;
+        while (pq.size()) {
+            ans[pq.top().second] = to_string(rank);
+            pq.pop();
+            rank++;
+        }
+        return ans;
+    }
+};
+Home Task : Solve problem 2 in O(n) complexity (without priority queue)
