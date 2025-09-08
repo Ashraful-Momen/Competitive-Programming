@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int row, col;
+    cin >> row >> col;   // first read row and col
+
+    int arr[1000][1000]; // static array with safe max size
+
+    // Matrix Input
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            cin >> arr[i][j];
+        }
+    }
+
+    cout << "Matrix is:\n";
+
+    // Matrix Output
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            cout << arr[i][j] << " ";
+        }
+        cout << "\n";
+    }
+
+    return 0;
+}
