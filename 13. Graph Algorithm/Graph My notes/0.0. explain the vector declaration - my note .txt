@@ -1,0 +1,63 @@
+int arry [m] => vector <int> m;
+
+vector <int > m (5); // total 5 index initial value is none; 
+[_, _, _, _, _]
+
+vector <int > m (5, 0); // total 5 index initial value is 0; 
+[0,0,0,0,0]
+
+
+int array [m][n] => vector < vector <int> > array ;
+int array [][] //cause we don't declare the row and col.
+
+
+
+int array [m][n] => vector < vector <int> > array(m);
+array[m][]
+// here just declare the vector row array [m], still now we don't declare the col . but we can assign the column value later when We write the code.
+
+
+int array [m][n] => vector < vector <int> > array(m, <vector <int> > n);
+array[m][n]
+// here we declare vector row => m and column => n. 
+
+vector < vector <int> > arr(3)
+output:
+---------
+[
+  []
+  []
+  []
+]
+-------------------------------
+vector < vector <int> > arr(3,0)
+[
+  [0,end]
+  [0,end]
+  [0,end]
+]
+
+we can add the column value later inside the code
+
+----------------------------------
+vector < vector <int> > arr(3, <vector <int> (2,0))
+total 3 row with 0->2 = 3 column those assign with 0. 
+[
+  [0,0.0]
+  [0,0.0]
+  [0,0.0]
+]
+
+we can add the column value later inside the code
+
+----------------------------------------
+int m = vector <int > arr(2,0)
+
+vector < vector <int>> arr (n,m); 
+or
+vector < vector <int>> arr (n, vector <int > arr(2,0)); 
+
+
+
+
+
