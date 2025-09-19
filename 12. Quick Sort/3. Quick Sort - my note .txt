@@ -1,0 +1,52 @@
+arr = [3,4,2,5,1]
+
+=> consider pivot is the first element of the array  [indx => 0, value => 3]. e.g: arr[0] => 3
+  => move all the elements in left sides
+  => move all the elements in right sides
+  
+
+
+=> we have to separte array into 3 parts => [ (small all elements) , (pivot) , (big all element) ]
+                                         => [ left side from pivot , pivot , right side from the pivot ]
+                                         => [ (1,2)smaller that pivot ----->, 3, <---------bigger thatn pivot(4,5) ]
+                                         => [1,2,3,4,5]
+
+=> core concept partitioning: 
+------------------------------
+    1. consider pivot is the 1st index from the array . 
+      a. move all smaller elements left side from pivot, [ if ( i < j) two pointer concept. moving : swap(arr[i],arr[j]) ]
+      b. move all bigger elements right side from pivot, [ if ( i < j) two pointer concept. moving : swap(arr[i],arr[j]) ]
+      
+      2. if (i<j) condition break that means 'j' point the 
+    5. set the pivot position in the middle , moving: swap(arr[] 
+    4.'pivot' set in the middle position | move here all bigger elements here.
+     
+
+=> we have to separte array into 3 parts => [ (small all elements) , (pivot) , (big all element) ]
+                                         => [ left side from pivot , pivot , right side from the pivot ]
+                                         => [ (1,2), 3, (4,5) ]
+                                         => [1,2,3,4,5]
+
+
+=> partition algo: using 2 pointer array sorting method . 
+------------------
+
+    func partion( arr, l, h)){          // 'l' is the first index of arr and 'h' is the last index of arr
+       int pivot = arr[0];              // first index of the array 
+       int i = arr[0];                  // starting pointer
+       int j = arr[h] ;              // ending pointer
+
+       while (i < j) {
+        while (arr[i] <= pivot && i < h) i++;
+        while (arr[j] > pivot) j--;
+        if (i < j) swap(arr[i], arr[j]);
+    }
+
+    swap(arr[l], arr[j]); // place pivot in correct position
+    return j;
+
+      return pivot_index;
+    }
+    
+
+
