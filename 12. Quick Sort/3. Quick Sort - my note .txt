@@ -1,8 +1,8 @@
 arr = [3,4,2,5,1]
 
 => consider pivot is the first element of the array  [indx => 0, value => 3]. e.g: arr[0] => 3
-  => move all the elements in left sides
-  => move all the elements in right sides
+  => move all the elements in left sides from the pivot
+  => move all the elements in right sides from the pivot
   
 
 
@@ -11,21 +11,17 @@ arr = [3,4,2,5,1]
                                          => [ (1,2)smaller that pivot ----->, 3, <---------bigger thatn pivot(4,5) ]
                                          => [1,2,3,4,5]
 
-=> core concept partitioning: 
+=> core concept partitioning: (i => find the big number and j => find the small number by loop)
 ------------------------------
     1. consider pivot is the 1st index from the array . 
       a. move all smaller elements left side from pivot, [ if ( i < j) two pointer concept. moving : swap(arr[i],arr[j]) ]
       b. move all bigger elements right side from pivot, [ if ( i < j) two pointer concept. moving : swap(arr[i],arr[j]) ]
       
-      2. if (i<j) condition break that means 'j' point the 
-    5. set the pivot position in the middle , moving: swap(arr[] 
-    4.'pivot' set in the middle position | move here all bigger elements here.
-     
+      2. if (i<j) then condition break;  that means 'j' goes to 1st index by j-- , and 'j' index is 0. j[0] means right now 'j' is            in the pivot position. and 'i' index out of array bound (i > sizeof array) by i++. 
+         *** we have to move or swap pivot element with j[0] elements. cause we have to set the pivot position in the middle. 
+    3. set the pivot position in the middle , moving: swap(arr[0], j[0]
+    4. return pivot index. 
 
-=> we have to separte array into 3 parts => [ (small all elements) , (pivot) , (big all element) ]
-                                         => [ left side from pivot , pivot , right side from the pivot ]
-                                         => [ (1,2), 3, (4,5) ]
-                                         => [1,2,3,4,5]
 
 
 => partition algo: using 2 pointer array sorting method . 
@@ -34,7 +30,7 @@ arr = [3,4,2,5,1]
     func partion( arr, l, h)){          // 'l' is the first index of arr and 'h' is the last index of arr
        int pivot = arr[0];              // first index of the array 
        int i = arr[0];                  // starting pointer
-       int j = arr[h] ;              // ending pointer
+       int j = arr[h] ;                 // ending pointer
 
        while (i < j) {
         while (arr[i] <= pivot && i < h) i++;
@@ -47,6 +43,7 @@ arr = [3,4,2,5,1]
 
       return pivot_index;
     }
-    
+
+// write here the main queue function . 
 
 
