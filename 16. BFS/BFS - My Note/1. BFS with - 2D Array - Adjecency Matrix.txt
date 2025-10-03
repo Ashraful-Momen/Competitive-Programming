@@ -40,15 +40,18 @@ Adjecency Matrix representation for the graph :
 
 #algorithm : (BFS)
 -----------
-suppose , grid = {{1,2,3},{4,5,6},{7,8,9},{10,11,12}}  //for the graph matrix should be , arr(n x n). that means row = column. 
+
+int main(){
+
+suppose , grid = {{1,2,3},{4,5,6},{7,8,9},{10,11,12},{13,14,15}}  //for the graph matrix should be , arr(n x n). that means row = column. 
 
 //step 1: find out row(node) and col(edage) from the grid. 
-  int n = grid.size() // total row or node
-  int m = gird[0].size() // total edage or column size 
+  int n = grid.size()         // total row or node
+  int m = gird[0].size()      // total edage or column size 
 
 //step 2: we have to start travers from a node. So, find the sour or root node. consider source node is 1. 
 
-pair<int,int> s // s(x,y) , 1(0,0). // hints, in the pair => s.first = x & s.second = y.  
+pair<int,int> s;               // s(x,y) , 1(0,0). // hints, in the pair => s.first = x & s.second = y.  
 
 //step3: Declare level as like grid . 
 
@@ -71,6 +74,60 @@ queue <pair<int,int>> q;
 
 //step 6. push source node to the queue. 
 q.push(s); // q[(0,0)]
+
+
+//step 7: declare dx and dy for 4 dimensional move use => top,bottom,right,left
+     
+dx= {+1,-1,0,0}
+dy= {0,0,+1-1}
+
+//step 8: run a while loop until empty the queue
+while(q.empty())
+{
+
+//step 9: store queue first value to 'u' cause .node , 'u' -> goto -> 'u' . | u is the source and v is the destination node.
+
+pair<int,int> u = queue.front() . // store the source node on 'u'. u[0,0]
+
+//step:11
+q.pop(); // delete the node from the queue . 
+
+//step:12:run the dimentional loop for move soure node to destination node 
+
+for (int i, i<4 ; i++) // run the loop 4 cause : top, bottom , right & left. 
+
+{
+
+  nx = x + d[i]; 
+  ny = y + d[i];
+
+//step: 13 // check the condition as like dfs , 
+
+  if(nx >= 0, ny >= 0 , nx < n , ny < m , grid[nx][ny] == 1, level[nx][ny] = -1)
+
+  {
+//step : 14 // increase the level for the current node . 
+  level[nx][ny] = level[x][y] + 1;  // current node level is 1 cause source node level was 0.
+
+//step : 15 push the current node to queue for goto next node by level ways. 
+  queue.push({nx,ny});
+  }
+  
+
+}
+}
+}
+
+
+
+
+
+
+
+
+
+
+}
 
 
 
