@@ -1,0 +1,82 @@
+# BFS : 
+-------
+Bread First Search . It's a travers algorithm for the graph. BFS is using the queue for going to level by level and DFS using the recursion for going depth by depth.
+
+
+#Level or Bread : 
+-----------------
+a root node goto child node , it's called as level.
+  
+example graph
+-----------------
+   1     ------------------- > level 0
+  / \
+ 2   3   ------------------- > level 1
+ |   |
+ 4   5   ------------------- > level 2
+
+
+Adjecency Matrix representation for the graph : 
+------------------------------------------------
+    1  2  3  4  5
+1 [ 0  1  1  0  0 ]
+2 [ 1  0  0  1  0 ]
+3 [ 1  0  0  0  1 ]
+4 [ 0  1  0  0  0 ]
+5 [ 0  0  1  0  0 ]
+
+**** Every node is represented by (x,y). So, root 1 node arry(0,0). 
+  
+  
+#Here , node = [1,2,3,4,5] . root node is 1 . 1 leaf nodes is, 1 : [2,3]. That means => 1 is connected with 2,3.
+  
+#connection among nodes : 
+------------------------
+  1 : [2,3]
+  2 : [4]
+  3 : [5]
+
+  
+
+#algorithm : (BFS)
+-----------
+suppose , grid = {{1,2,3},{4,5,6},{7,8,9},{10,11,12}}  //for the graph matrix should be , arr(n x n). that means row = column. 
+
+//step 1: find out row(node) and col(edage) from the grid. 
+  int n = grid.size() // total row or node
+  int m = gird[0].size() // total edage or column size 
+
+//step 2: we have to start travers from a node. So, find the sour or root node. consider source node is 1. 
+
+pair<int,int> s // s(x,y) , 1(0,0). // hints, in the pair => s.first = x & s.second = y.  
+
+//step3: Declare level as like grid . 
+
+vector<vector<int>> level (node+1,vector<int>(m,-1) // level is similar as grid. 
+
+// so the level look like : 
+// -------------------------    
+//      1   2   3   4   5
+// 1 [ -1  -1  -1  -1  -1 ]
+// 2 [ -1  -1  -1  -1  -1 ]
+// 3 [ -1  -1  -1  -1  -1 ]
+// 4 [ -1  -1  -1  -1  -1 ]
+// 5 [ -1  -1  -1  -1  -1 ]
+
+//step 4: initialized the source node level is 0. SO, level{x,y} = 0 . 
+level[s.first,s.second} = 0.  // hints, in the pair => s.first = x & s.second = y.
+
+//step 5: we need queue for goto level by level . Declare a queue. queue shap similar like source node . 
+queue <pair<int,int>> q; 
+
+//step 6. push source node to the queue. 
+q.push(s); // q[(0,0)]
+
+
+
+
+
+
+
+
+
