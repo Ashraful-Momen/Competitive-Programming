@@ -1,85 +1,109 @@
-    1     → level 0
-   / \
-  2   3   → level 1
-  |   |
-  4   5   → level 2
-
-
-#algorithm : (BFS - Adjacency List)
+#algorithm : (BFS on Nodes and Edges - Adjacency List)
 -----------
+the graph: 
+------------
 
-#include <iostream>
-#include <vector>
-#include <queue>
-using namespace std;
+Level 0:        1
+               / \
+Level 1:      2   4
+              |   |
+Level 2:      3   5
+                  |
+Level 3:          6
 
-int main() {
-    // Total number of nodes
-    int n = 5;  // nodes: 1, 2, 3, 4, 5
 
-    // Step 1: Build adjacency list (1-indexed)
-    vector<vector<int>> adj(n + 1);  // index 0 unused; use 1 to 5
+#matrix form of the graph : 
+---------------------------
+adj[1] = {2, 4}
+adj[2] = {1, 3}
+adj[3] = {2}
+adj[4] = {1, 5}
+adj[5] = {4, 6}
+adj[6] = {5}
 
-    // Add edges (undirected): 
-    // 1 connected to 2 and 3
-    // 2 connected to 4
-    // 3 connected to 5
-    adj[1].push_back(2);
-    adj[1].push_back(3);
 
-    adj[2].push_back(1);
-    adj[2].push_back(4);
+// code start from here : ___________________________________
 
-    adj[3].push_back(1);
-    adj[3].push_back(5);
 
-    adj[4].push_back(2);
-    adj[5].push_back(3);
+int main(){
 
-    // Step 2: Declare level array (1-indexed), initialize all to -1
-    vector<int> level(n + 1, -1);
-    // So level looks like:
-    // index: 0  1  2  3  4  5
-    //        ? -1 -1 -1 -1 -1   (we ignore index 0)
+    // suppose , we have a graph with 7 nodes and 8 edges
+    // Edges are: 
+    // 1-2, 1-4, 2-3, 3-5, 5-6, 6-7, 2-7, 4-5
 
-    // Step 3: Source node is 1
+    // step 1: declare adjacency list (global or inside main with size)
+    vector<int> adj[100];   // adj[1] to adj[7] will be used (1-indexed)
+
+    // step 2: take input for node and edge
+    int n = 7;    // total nodes
+    int m = 8;    // total edges
+
+    // step 3: build the undirected graph using adjacency list
+    for ( int i = 1; i <= m; i++ ) {
+        int u, v;
+        cin >> u >> v;
+
+        // undirected → add both directions
+        adj[u].push_back(v);   // u --> v
+        adj[v].push_back(u);   // v --> u
+    }
+
+    // step 4: declare level array (size = n+1), initialize all with -1 (unvisited)
+    vector<int> level(n+1, -1);
+    // so level looks like:
+    // index: 0  1  2  3  4  5  6  7
+    //        ? -1 -1 -1 -1 -1 -1 -1   (index 0 unused)
+
+    // step 5: source node is 1 (start BFS from node 1)
     int source = 1;
 
-    // Step 4: Set source level to 0
+    // step 6: set level of source node to 0
     level[source] = 0;
 
-    // Step 5: Declare queue
+    // step 7: declare queue for BFS (stores node numbers)
     queue<int> q;
 
-    // Step 6: Push source
-    q.push(source);  // q = [1]
+    // step 8: push source node into queue
+    q.push(source);   // q = [1]
 
-    // Step 7: BFS loop
-    while (!q.empty()) {
-        // Step 8: Get current node
+    // step 9: run BFS until queue is empty
+    while ( !q.empty() ) {
+
+        // step 10: take front node as 'u' (current node)
         int u = q.front();
+
+        // step 11: remove front node from queue
         q.pop();
 
-        // Step 9: Visit all neighbors of u
-        for (int i = 0; i < adj[u].size(); i++) {
-            int v = adj[u][i];  // neighbor node
+        // step 12: traverse all neighbors of 'u'
+        for ( auto v : adj[u] ) {   // v = each connected node
 
-            // Step 10: If not visited (level == -1)
-            if (level[v] == -1) {
-                // Step 11: Set level
+            // step 13: check if neighbor 'v' is unvisited (level == -1)
+            if ( level[v] == -1 ) {
+
+                // step 14: assign level to 'v' → parent level + 1
                 level[v] = level[u] + 1;
 
-                // Step 12: Push to queue
+                // step 15: push 'v' into queue for next level traversal
                 q.push(v);
             }
         }
     }
 
-    // Output levels (optional)
-    cout << "Node : Level\n";
-    for (int i = 1; i <= n; i++) {
-        cout << "  " << i << "   :   " << level[i] << "\n";
+    // step 16: print level of each node
+    for ( int i = 1; i <= n; i++ ) {
+        cout << i << " : " << level[i] << endl;
     }
 
     return 0;
 }
+
+output : 
+------------
+1 : 0
+2 : 1
+3 : 2
+4 : 1
+5 : 2
+6 : 3
+7 : 2
